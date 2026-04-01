@@ -30,7 +30,6 @@
   color: #fef9e6;
 }
 
-/* Dark mode styles for toggle */
 .dark-mode .theme-toggle {
   background: rgba(30, 58, 95, 0.2);
   border-color: rgba(30, 58, 95, 0.3);

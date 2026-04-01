@@ -10,7 +10,6 @@ function HomePage() {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const navigate = useNavigate();
 
-  // Fetch all wonders for suggestions
   useEffect(() => {
     const fetchWonders = async () => {
       try {
@@ -28,20 +27,18 @@ function HomePage() {
     fetchWonders();
   }, []);
 
-  // Handle search input change
   const handleSearchChange = (e) => {
     const value = e.target.value;
     setSearchTerm(value);
 
     if (value.trim()) {
-      // Filter suggestions based on search term
       const filtered = allWonders.filter(
         (wonder) =>
           wonder.name?.toLowerCase().includes(value.toLowerCase()) ||
           wonder.location?.toLowerCase().includes(value.toLowerCase()) ||
           wonder.time_period?.toLowerCase().includes(value.toLowerCase()),
       );
-      setSuggestions(filtered.slice(0, 8)); // Show top 8 suggestions
+      setSuggestions(filtered.slice(0, 8));
       setShowSuggestions(true);
     } else {
       setSuggestions([]);
@@ -49,25 +46,20 @@ function HomePage() {
     }
   };
 
-  // Handle Enter key press
   const handleKeyPress = (e) => {
     if (e.key === "Enter" && searchTerm.trim()) {
       setShowSuggestions(false);
-      // Navigate to wonders page with search query
       navigate(`/wonders?search=${encodeURIComponent(searchTerm)}`);
     }
   };
 
-  // Handle suggestion click
   const handleSuggestionClick = (wonder) => {
     setSearchTerm(wonder.name);
     setShowSuggestions(false);
-    // Navigate to the wonder detail page
     const wonderSlug = wonder.name.toLowerCase().replace(/\s+/g, "-");
     navigate(`/wonder/${wonderSlug}`);
   };
 
-  // Close suggestions when clicking outside
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (!e.target.closest(".search__box")) {
@@ -124,7 +116,6 @@ function HomePage() {
                   />
                   <i className="fa-solid fa-magnifying-glass"></i>
 
-                  {/* Dropdown Suggestions */}
                   {showSuggestions && suggestions.length > 0 && (
                     <div className="search-suggestions">
                       {suggestions.map((wonder, index) => (
@@ -156,7 +147,6 @@ function HomePage() {
                     </div>
                   )}
 
-                  {/* No Results Message */}
                   {showSuggestions &&
                     searchTerm.trim() &&
                     suggestions.length === 0 && (

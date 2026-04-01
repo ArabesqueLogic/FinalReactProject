@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Roboto:ital,wdth,wght@0,75..100,100..900;1,75..100,100..900&display=swap");
 
-/* Light Mode (Default) */
 :root,
 .light-mode {
   --bg-primary: linear-gradient(135deg, #fef9e6 0%, #fff5e8 100%);
@@ -27,7 +26,6 @@
   --description-text: #fef9e6;
 }
 
-/* Dark Mode - Complete Color Inversion */
 .dark-mode {
   --bg-primary: linear-gradient(135deg, #1a2a3f 0%, #0f1a2a 100%);
   --bg-secondary: #1e3a5f;
@@ -162,7 +160,6 @@ select:active {
   color: var(--text-primary);
 }
 
-/* Navigation - Simple Full Width with Centered Content */
 nav {
   background-color: var(--nav-bg);
   width: 100%;
@@ -238,7 +235,6 @@ nav {
   opacity: 0.9;
 }
 
-/* Hero Section */
 .hero {
   padding: 60px 0 40px;
   position: relative;
@@ -333,7 +329,6 @@ nav {
   opacity: 1;
 }
 
-/* Hero Image */
 .hero__image {
   width: 100%;
   max-width: 600px;
@@ -360,7 +355,6 @@ nav {
   border-color: var(--accent-secondary);
 }
 
-/* Wonders Section */
 .wonder__header {
   display: flex;
   justify-content: space-between;
@@ -447,7 +441,6 @@ nav {
   font-size: 18px;
 }
 
-/* About Section */
 .about-page {
   flex: 1;
   padding: 60px 0;
@@ -508,7 +501,6 @@ nav {
   text-align: left;
 }
 
-/* Footer */
 footer {
   background-color: var(--footer-bg);
   padding: 40px 0 25px;
@@ -567,7 +559,6 @@ footer {
   opacity: 0.8;
 }
 
-/* Theme Toggle Button */
 .theme-toggle {
   display: flex;
   align-items: center;
@@ -606,7 +597,6 @@ footer {
   border-color: rgba(30, 58, 95, 0.3);
 }
 
-/* Responsive Design */
 @media (max-width: 968px) {
   .search__wrapper {
     padding: 36px;

@@ -9,14 +9,13 @@ function WonderDetailPage() {
   const [wonder, setWonder] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedImage, setSelectedImage] = useState(null); // State for selected image
+  const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
     const fetchWonderDetails = async () => {
       try {
         setLoading(true);
 
-        // Fetch ALL wonders first since API doesn't have direct ID endpoint
         const response = await fetch(
           "https://www.world-wonders-api.org/v0/wonders",
         );
@@ -29,18 +28,14 @@ function WonderDetailPage() {
         console.log("All wonders:", allWonders);
         console.log("Looking for ID:", id);
 
-        // Decode the URL parameter (it was encoded with spaces replaced by hyphens)
         const decodedId = decodeURIComponent(id);
 
-        // Find the wonder by matching the name (converted to URL-friendly format)
         const foundWonder = allWonders.find((w) => {
-          // Create URL-friendly name (lowercase, spaces replaced with hyphens)
           const urlName = (w.name || "")
             .toLowerCase()
             .replace(/\s+/g, "-")
             .replace(/[^\w-]/g, "");
 
-          // Also try direct name match
           const directNameMatch = w.name === decodedId;
 
           return urlName === decodedId || directNameMatch;
@@ -49,7 +44,6 @@ function WonderDetailPage() {
         if (foundWonder) {
           console.log("Found wonder:", foundWonder);
           setWonder(foundWonder);
-          // Set the first image as selected image
           if (
             foundWonder.links?.images &&
             foundWonder.links.images.length > 0
@@ -76,12 +70,10 @@ function WonderDetailPage() {
     return year < 0 ? `${Math.abs(year)} BCE` : year;
   };
 
-  // Handle thumbnail click - change main image
   const handleThumbnailClick = (imageUrl) => {
     setSelectedImage(imageUrl);
   };
 
-  // Skeleton Loader Component
   const SkeletonLoader = () => {
     return (
       <div className="detail__wrapper">
@@ -288,11 +280,9 @@ function WonderDetailPage() {
             </div>
 
             <div className="detail__content">
-              {/* Image Gallery */}
               <div className="detail__gallery">
                 {wonder.links?.images && wonder.links.images.length > 0 ? (
                   <>
-                    {/* Main Image - changes when thumbnail is clicked */}
                     <img
                       className="detail__main-image"
                       src={selectedImage || wonder.links.images[0]}
@@ -304,7 +294,6 @@ function WonderDetailPage() {
                       }}
                     />
 
-                    {/* Thumbnails - click to change main image */}
                     {wonder.links.images.length > 1 && (
                       <div className="detail__thumbnails">
                         {wonder.links.images.map((img, idx) => (
@@ -331,7 +320,6 @@ function WonderDetailPage() {
                 )}
               </div>
 
-              {/* Key Information */}
               <div className="detail__info">
                 <div className="info__section">
                   <h2 className="section__title">Key Information</h2>
@@ -369,7 +357,6 @@ function WonderDetailPage() {
                   </div>
                 </div>
 
-                {/* Description */}
                 {wonder.description && (
                   <div className="info__section">
                     <h2 className="section__title">Description</h2>
@@ -379,7 +366,6 @@ function WonderDetailPage() {
                   </div>
                 )}
 
-                {/* Historical Context */}
                 {wonder.history && (
                   <div className="info__section">
                     <h2 className="section__title">Historical Context</h2>
@@ -389,7 +375,6 @@ function WonderDetailPage() {
                   </div>
                 )}
 
-                {/* Links */}
                 {(wonder.links?.wiki || wonder.links?.wikipedia) && (
                   <div className="info__section">
                     <h2 className="section__title">Learn More</h2>

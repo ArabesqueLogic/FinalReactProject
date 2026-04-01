@@ -13,13 +13,11 @@ function WondersPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
 
-  // Pagination state - 9 wonders per page
   const [currentPage, setCurrentPage] = useState(1);
   const [pageLoading, setPageLoading] = useState(false);
   const [filterLoading, setFilterLoading] = useState(false);
   const wondersPerPage = 9;
 
-  // Get search query from URL when component mounts
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const searchQuery = params.get("search");
@@ -30,7 +28,6 @@ function WondersPage() {
     }
   }, [location]);
 
-  // Debounce search input
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedSearchTerm(searchTerm);
