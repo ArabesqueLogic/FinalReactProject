@@ -12,9 +12,9 @@ const ThemeToggle = () => {
     >
       <div className="theme-toggle__slider">
         {isDarkMode ? (
-          <i class="fa-solid fa-circle"></i>
+          <i className="fa-solid fa-circle"></i>
         ) : (
-          <i class="fa-regular fa-circle"></i>
+          <i className="fa-regular fa-circle"></i>
         )}
       </div>
       <span className="theme-toggle__text">
